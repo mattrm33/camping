@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camping Les Bords de Lyonne - Saint-Jean-en-Royans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -17,7 +18,6 @@
             --accent: #f4a261;
             --light: #f8f9fa;
             --dark: #2c3e50;
-            --gradient: linear-gradient(135deg, #2d5a3d 0%, #6b9080 100%);
         }
 
         body {
@@ -25,6 +25,7 @@
             line-height: 1.6;
             color: var(--dark);
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* Header et Navigation */
@@ -36,23 +37,25 @@
             background: rgba(45, 90, 61, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: white;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
@@ -89,40 +92,42 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(45, 90, 61, 0.6), rgba(45, 90, 61, 0.6)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%236b9080" width="1200" height="600"/><path fill="%232d5a3d" d="M0 400 Q300 300 600 400 T1200 400 V600 H0 Z"/><circle fill="%23f4a261" cx="900" cy="100" r="80" opacity="0.3"/></svg>') center/cover;
+            min-height: 100vh;
+            background: linear-gradient(rgba(45, 90, 61, 0.5), rgba(45, 90, 61, 0.5)),
+                        url('https://www.camping-saintjeanenroyans.com/wp-content/uploads/2022/04/MIDI1199-810x800.jpg') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
-            margin-top: 70px;
+            margin-top: 0;
+            padding-top: 80px;
+            width: 100%;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 90%;
             padding: 2rem;
             animation: fadeInUp 1s ease;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             margin-bottom: 2rem;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
         .cta-button {
@@ -144,23 +149,25 @@
 
         /* Sections */
         section {
-            padding: 5rem 2rem;
-            max-width: 1400px;
+            padding: 4rem 5%;
+            max-width: 100%;
             margin: 0 auto;
+            width: 100%;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--primary);
             margin-bottom: 3rem;
             position: relative;
+            padding-bottom: 1rem;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
@@ -172,9 +179,10 @@
         /* Cards Grid */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            width: 100%;
         }
 
         .card {
@@ -184,6 +192,9 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .card:hover {
@@ -192,13 +203,25 @@
         }
 
         .card-image {
-            height: 200px;
-            background: var(--gradient);
+            height: 250px;
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
             color: white;
+            position: relative;
+        }
+
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
         }
 
         .card-content {
@@ -208,19 +231,21 @@
         .card-content h3 {
             color: var(--primary);
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         /* Info Section */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            width: 100%;
         }
 
         .info-item {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             background: var(--light);
             border-radius: 15px;
             transition: all 0.3s;
@@ -234,14 +259,21 @@
         .info-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .info-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         /* Contact Section */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
+            width: 100%;
         }
 
         .contact-info {
@@ -257,25 +289,56 @@
 
         .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-item-icon {
             font-size: 1.5rem;
             color: var(--accent);
+            min-width: 30px;
         }
 
         .map-container {
             background: var(--light);
             border-radius: 15px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--secondary);
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Plan du camping */
+        .plan-camping {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 15px;
+        }
+
+        .plan-camping a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .plan-camping a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
 
         /* Footer */
@@ -283,8 +346,9 @@
             background: var(--primary);
             color: white;
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 5%;
             margin-top: 3rem;
+            width: 100%;
         }
 
         /* Animations */
@@ -299,18 +363,24 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive Mobile */
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 3%;
+            }
+
             .nav-links {
                 position: fixed;
                 left: -100%;
-                top: 70px;
+                top: 60px;
                 flex-direction: column;
                 background: var(--primary);
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 padding: 2rem;
+                gap: 1rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             }
 
             .nav-links.active {
@@ -321,20 +391,53 @@
                 display: block;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero {
+                min-height: 80vh;
+                padding-top: 60px;
             }
 
-            .hero p {
-                font-size: 1rem;
+            section {
+                padding: 3rem 3%;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
             .contact-container {
                 grid-template-columns: 1fr;
             }
 
-            .cards-grid {
-                grid-template-columns: 1fr;
+            .card-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.8rem 3%;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 2rem 3%;
+            }
+
+            .info-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .card-content {
+                padding: 1.2rem;
             }
         }
     </style>
@@ -342,7 +445,9 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">🏕️ Les Bords de Lyonne</a>
+            <a href="#" class="logo">
+                <i class="fas fa-campground"></i> Les Bords de Lyonne
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#hebergements">Hébergements</a></li>
@@ -350,7 +455,9 @@
                 <li><a href="#activites">Activités</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
@@ -372,22 +479,22 @@
         
         <div class="info-grid">
             <div class="info-item">
-                <div class="info-icon">🏕️</div>
+                <div class="info-icon"><i class="fas fa-campground"></i></div>
                 <h3>60 Emplacements</h3>
                 <p>Spacieux et délimités pour tentes, caravanes et camping-cars</p>
             </div>
             <div class="info-item">
-                <div class="info-icon">🏠</div>
+                <div class="info-icon"><i class="fas fa-home"></i></div>
                 <h3>6 Chalets</h3>
                 <p>Confortables et équipés pour un séjour tout confort</p>
             </div>
             <div class="info-item">
-                <div class="info-icon">⭐</div>
+                <div class="info-icon"><i class="fas fa-star"></i></div>
                 <h3>2 Étoiles</h3>
                 <p>Camping classé pour votre sérénité</p>
             </div>
             <div class="info-item">
-                <div class="info-icon">🌊</div>
+                <div class="info-icon"><i class="fas fa-water"></i></div>
                 <h3>Au bord de l'eau</h3>
                 <p>Accès direct à la rivière Lyonne</p>
             </div>
@@ -398,26 +505,34 @@
         <h2 class="section-title">Nos Hébergements</h2>
         <div class="cards-grid">
             <div class="card">
-                <div class="card-image">⛺</div>
+                <div class="card-image" style="background-image: url('https://www.camping-saintjeanenroyans.com/wp-content/uploads/2022/04/MIDI1199-810x800.jpg');"></div>
                 <div class="card-content">
-                    <h3>Emplacements de Camping</h3>
+                    <h3><i class="fas fa-tent"></i> Emplacements de Camping</h3>
                     <p>Emplacements spacieux et ombragés pour tentes, caravanes et camping-cars. Branchements électriques disponibles.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">🏠</div>
+                <div class="card-image" style="background-image: url('https://www.camping-saintjeanenroyans.com/wp-content/uploads/2022/02/chalets-top-1300x800.jpg');"></div>
                 <div class="card-content">
-                    <h3>Chalets Tout Confort</h3>
+                    <h3><i class="fas fa-house"></i> Chalets Tout Confort</h3>
                     <p>Chalets entièrement équipés avec cuisine, salle de bain et terrasse. Idéal pour un séjour en famille.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">🚐</div>
+                <div class="card-image" style="background-image: url('https://www.camping-saintjeanenroyans.com/wp-content/uploads/2022/03/photos-camping-bloc-sanitaire-1-1300x800.jpg');"></div>
                 <div class="card-content">
-                    <h3>Aires Camping-Cars</h3>
+                    <h3><i class="fas fa-caravan"></i> Aires Camping-Cars</h3>
                     <p>Emplacements dédiés aux camping-cars avec bornes de service et branchements.</p>
                 </div>
             </div>
+        </div>
+        
+        <div class="plan-camping">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-map"></i> Plan du Camping</h3>
+            <p>Téléchargez le plan complet du camping pour vous repérer facilement</p>
+            <a href="https://www.camping-saintjeanenroyans.com/wp-content/uploads/2024/04/Plan-Camping-2024.pdf" target="_blank">
+                <i class="fas fa-download"></i> Télécharger le plan
+            </a>
         </div>
     </section>
 
@@ -425,45 +540,24 @@
         <h2 class="section-title">Nos Services</h2>
         <div class="cards-grid">
             <div class="card">
-                <div class="card-image">🚿</div>
+                <div class="card-image" style="background-image: url('https://www.camping-saintjeanenroyans.com/wp-content/uploads/2022/04/lavabos-500-x-690-500x800.jpg');"></div>
                 <div class="card-content">
-                    <h3>Sanitaires Modernes</h3>
+                    <h3><i class="fas fa-shower"></i> Sanitaires Modernes</h3>
                     <p>Blocs sanitaires propres avec douches chaudes, WC et accès PMR.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">🧺</div>
+                <div class="card-image" style="background: var(--secondary);"></div>
                 <div class="card-content">
-                    <h3>Laverie</h3>
-                    <p>2 lave-linge à disposition pour votre confort.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">🏐</div>
-                <div class="card-content">
-                    <h3>Terrain de Volley</h3>
+                    <h3><i class="fas fa-volleyball-ball"></i> Terrain de Volley</h3>
                     <p>Profitez de notre terrain de volley pour des moments sportifs en famille.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">🎾</div>
+                <div class="card-image" style="background: var(--secondary);"></div>
                 <div class="card-content">
-                    <h3>Initiation Tennis</h3>
-                    <p>Centre d'initiation au tennis pour petits et grands.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">🍖</div>
-                <div class="card-content">
-                    <h3>Espace Barbecue</h3>
-                    <p>Zones dédiées pour vos grillades conviviales (barbecues à charbon interdits).</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">👥</div>
-                <div class="card-content">
-                    <h3>Salle de Réunion</h3>
-                    <p>Espace commun pour vos moments de convivialité.</p>
+                    <h3><i class="fas fa-bowling-ball"></i> Terrain de Pétanque</h3>
+                    <p>Terrain de pétanque ombragé pour des parties conviviales.</p>
                 </div>
             </div>
         </div>
@@ -472,45 +566,38 @@
     <section id="activites" style="background: var(--light);">
         <h2 class="section-title">Activités & Découvertes</h2>
         <div class="cards-grid">
-            <div class="card">
-                <div class="card-image">🏊</div>
+            <a href="https://www.saint-jean-en-royans.fr/324-piscine-intercommunale-espace-aquatique.html" target="_blank" class="card">
+                <div class="card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
                 <div class="card-content">
-                    <h3>Baignade</h3>
-                    <p>Profitez de la rivière Lyonne pour vous rafraîchir et vous baigner à proximité.</p>
+                    <h3><i class="fas fa-swimming-pool"></i> Piscine Intercommunale</h3>
+                    <p>Espace aquatique moderne avec bassins et toboggans pour toute la famille.</p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image">🎣</div>
+            </a>
+            <a href="https://www.cartedepeche.fr/association/1028/124-annuaire-des-associations.html" target="_blank" class="card">
+                <div class="card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
                 <div class="card-content">
-                    <h3>Pêche à la Ligne</h3>
-                    <p>Pêchez en toute tranquillité au bord de la rivière.</p>
+                    <h3><i class="fas fa-fish"></i> Pêche à la Ligne</h3>
+                    <p>Pêchez en toute tranquillité au bord de la rivière Lyonne.</p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image">🧗</div>
+            </a>
+            <a href="https://www.acrv.org/bapteme-de-lair/" target="_blank" class="card">
+                <div class="card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
                 <div class="card-content">
-                    <h3>Escalade & Alpinisme</h3>
-                    <p>Le Vercors est un paradis pour les amateurs d'escalade et d'alpinisme.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">🪂</div>
-                <div class="card-content">
-                    <h3>Baptêmes de l'Air</h3>
+                    <h3><i class="fas fa-plane"></i> Baptêmes de l'Air</h3>
                     <p>Découvrez le Vercors vu du ciel avec des baptêmes de l'air inoubliables.</p>
                 </div>
-            </div>
+            </a>
             <div class="card">
-                <div class="card-image">🏞️</div>
+                <div class="card-image" style="background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);"></div>
                 <div class="card-content">
-                    <h3>Randonnées</h3>
+                    <h3><i class="fas fa-hiking"></i> Randonnées</h3>
                     <p>Explorez le Vercors, Combe-Laval, les Goulets et la forêt de Lente.</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">🛍️</div>
+                <div class="card-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
                 <div class="card-content">
-                    <h3>Commerces à Proximité</h3>
+                    <h3><i class="fas fa-shopping-basket"></i> Commerces de Proximité</h3>
                     <p>Tous commerces à 1 km au village de Saint-Jean-en-Royans.</p>
                 </div>
             </div>
@@ -523,7 +610,7 @@
             <div class="contact-info">
                 <h3>Informations de Contact</h3>
                 <div class="contact-item">
-                    <span class="contact-item-icon">📍</span>
+                    <span class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></span>
                     <div>
                         <strong>Adresse</strong><br>
                         Camping Les Bords de Lyonne<br>
@@ -532,21 +619,21 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-item-icon">📞</span>
+                    <span class="contact-item-icon"><i class="fas fa-phone"></i></span>
                     <div>
                         <strong>Téléphone</strong><br>
                         04 75 47 76 17
                     </div>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-item-icon">🌐</span>
+                    <span class="contact-item-icon"><i class="fas fa-globe"></i></span>
                     <div>
                         <strong>Site Web</strong><br>
                         www.camping-saintjeanenroyans.com
                     </div>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-item-icon">⚡</span>
+                    <span class="contact-item-icon"><i class="fas fa-bolt"></i></span>
                     <div>
                         <strong>Électricité</strong><br>
                         6 A soit 1320 W disponible
@@ -554,7 +641,7 @@
                 </div>
             </div>
             <div class="map-container">
-                🗺️
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2813.2!2d5.295!3d45.019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4f0e9c8e8c8c9%3A0x8f8f8f8f8f8f8f8f!2sCamping%20Les%20Bords%20de%20Lyonne!5e0!3m2!1sfr!2sfr!4v1234567890" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -572,14 +659,12 @@
             navLinks.classList.toggle('active');
         });
 
-        // Fermer le menu mobile lors du clic sur un lien
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -593,10 +678,9 @@
             });
         });
 
-        // Animation au scroll
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
