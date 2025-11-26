@@ -1,164 +1,171 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    /* ------------------------------------------------
-       1. Menu Hamburger Responsive
-    ------------------------------------------------ */
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-    const navLinks = document.querySelectorAll(".nav-menu a");
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Ouvrir/Fermer le menu au clic sur l'icône
-    hamburger.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-        // Animation simple de l'icône (optionnel)
-        hamburger.classList.toggle("open");
+    /* =========================================
+       1. Menu Hamburger Responsive
+       ========================================= */
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.main-nav');
+    const navLinks = document.querySelectorAll('.main-nav a');
+
+    // Ouverture / Fermeture du menu
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
 
     // Fermer le menu quand on clique sur un lien
     navLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
         });
     });
 
-    /* ------------------------------------------------
-       2. Slider d'Images (Hero)
-    ------------------------------------------------ */
-    const slides = document.querySelectorAll(".slide");
-    const prevBtn = document.querySelector(".prev-slide");
-    const nextBtn = document.querySelector(".next-slide");
+    /* =========================================
+       2. Slider Héro (Auto + Manuel)
+       ========================================= */
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
     let currentSlide = 0;
     const slideIntervalTime = 5000; // 5 secondes
     let slideInterval;
 
-    // Fonction pour afficher une slide spécifique
     const showSlide = (index) => {
-        slides.forEach((slide, i) => {
-            slide.classList.remove("active");
-            if (i === index) {
-                slide.classList.add("active");
-            }
-        });
-    };
-
-    // Slide suivante
-    const nextSlide = () => {
-        currentSlide++;
-        if (currentSlide > slides.length - 1) {
+        // Enlève la classe active de toutes les slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Gestion de l'index cyclique
+        if (index >= slides.length) {
             currentSlide = 0;
-        }
-        showSlide(currentSlide);
-    };
-
-    // Slide précédente
-    const prevSlide = () => {
-        currentSlide--;
-        if (currentSlide < 0) {
+        } else if (index < 0) {
             currentSlide = slides.length - 1;
+        } else {
+            currentSlide = index;
         }
-        showSlide(currentSlide);
+
+        // Ajoute la classe active à la slide courante
+        slides[currentSlide].classList.add('active');
     };
 
-    // Écouteurs d'événements pour les flèches
-    nextBtn.addEventListener("click", () => {
+    const nextSlide = () => {
+        showSlide(currentSlide + 1);
+    };
+
+    const prevSlide = () => {
+        showSlide(currentSlide - 1);
+    };
+
+    // Boutons manuels
+    nextBtn.addEventListener('click', () => {
         nextSlide();
         resetInterval();
     });
 
-    prevBtn.addEventListener("click", () => {
+    prevBtn.addEventListener('click', () => {
         prevSlide();
         resetInterval();
     });
 
-    // Autoplay
-    const startInterval = () => {
+    // Défilement automatique
+    const startSlideShow = () => {
         slideInterval = setInterval(nextSlide, slideIntervalTime);
     };
 
     const resetInterval = () => {
         clearInterval(slideInterval);
-        startInterval();
+        startSlideShow();
     };
 
-    // Démarrer le slider
-    startInterval();
+    // Lancer le slider
+    startSlideShow();
 
-    /* ------------------------------------------------
+    /* =========================================
        3. Animation Fade-in au Scroll
-    ------------------------------------------------ */
-    const faders = document.querySelectorAll('.fade-in');
-
-    const appearOptions = {
-        threshold: 0.2, // Déclenche quand 20% de l'élément est visible
-        rootMargin: "0px 0px -50px 0px"
+       ========================================= */
+    const observerOptions = {
+        threshold: 0.15 // Déclenche quand 15% de l'élément est visible
     };
 
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return;
-            } else {
+            if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                appearOnScroll.unobserve(entry.target); // Arrête d'observer une fois apparu
+                observer.unobserve(entry.target); // Arrête d'observer une fois animé
             }
         });
-    }, appearOptions);
+    }, observerOptions);
 
-    faders.forEach(fader => {
-        appearOnScroll.observe(fader);
+    const sections = document.querySelectorAll('.fade-in-section');
+    sections.forEach(section => {
+        observer.observe(section);
     });
 
-    /* ------------------------------------------------
-       4. Validation Formulaire Réservation (Simple)
-    ------------------------------------------------ */
-    const bookingForm = document.getElementById("bookingForm");
+    /* =========================================
+       4. Validation des Formulaires
+       ========================================= */
+    
+    // --- Formulaire de Réservation ---
+    const bookingForm = document.getElementById('booking-form');
     
     if(bookingForm) {
-        bookingForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Empêche l'envoi réel pour la démo
-
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const arrival = new Date(document.getElementById("arrival").value);
-            const departure = new Date(document.getElementById("departure").value);
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            // Vérification basique
-            if (name === "" || email === "") {
-                alert("Merci de remplir tous les champs obligatoires.");
-                return;
-            }
+            // Récupération des valeurs
+            const name = document.getElementById('name').value;
+            const arrival = document.getElementById('arrival').value;
+            const departure = document.getElementById('departure').value;
+            const type = document.getElementById('accommodation-type').value;
 
-            if (arrival >= departure) {
-                alert("La date de départ doit être postérieure à la date d'arrivée.");
+            // Validation basique des dates
+            if (new Date(arrival) >= new Date(departure)) {
+                alert("Erreur : La date de départ doit être ultérieure à la date d'arrivée.");
                 return;
             }
 
             // Simulation d'envoi réussi
-            alert(`Merci ${name} ! Votre demande de réservation du ${arrival.toLocaleDateString()} au ${departure.toLocaleDateString()} a bien été envoyée.`);
+            alert(`Merci ${name} ! Votre demande de réservation pour un(e) ${type} du ${arrival} au ${departure} a bien été envoyée. Nous vous contacterons rapidement.`);
             bookingForm.reset();
         });
     }
 
-    /* ------------------------------------------------
-       5. Validation Formulaire Contact
-    ------------------------------------------------ */
-    const contactForm = document.getElementById("contactForm");
+    // --- Formulaire de Contact ---
+    const contactForm = document.getElementById('contact-form');
 
     if(contactForm) {
-        contactForm.addEventListener("submit", (e) => {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = document.getElementById("contactEmail").value;
+            const contactName = document.getElementById('contact-name').value;
             
-            // Regex simple pour email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if(!emailRegex.test(email)) {
-                alert("Veuillez entrer une adresse email valide.");
-                return;
-            }
-
-            alert("Message envoyé avec succès ! Nous vous répondrons sous 24h.");
+            alert(`Merci ${contactName}, votre message a bien été envoyé !`);
             contactForm.reset();
         });
     }
 });
+
+/* =========================================
+   5. Fonction utilitaire globale
+   ========================================= */
+// Permet de pré-remplir le sélecteur depuis les boutons "Réserver" des cartes
+function scrollToBooking(type) {
+    const select = document.getElementById('accommodation-type');
+    const formSection = document.getElementById('tarifs');
+    
+    // Scroller vers la section
+    formSection.scrollIntoView({ behavior: 'smooth' });
+    
+    // Sélectionner l'option
+    // Petit délai pour laisser le temps au scroll de commencer
+    setTimeout(() => {
+        // Chercher l'option qui contient le texte ou la valeur
+        for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === type) {
+                select.selectedIndex = i;
+                break;
+            }
+        }
+        // Focus visuel
+        select.focus();
+    }, 500);
+}
