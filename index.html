@@ -3,138 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camping Les Bords de Lyonne - Vacances Nature & Détente dans le Vercors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Camping Municipal Saint-Jean-en-Royans | Vercors</title>
+    <meta name="description" content="Camping au pied du Vercors à Saint-Jean-en-Royans. Emplacements, mobil-homes, piscine et nature. Réservez vos vacances en Drôme.">
+    
+    <!-- Polices Google Fonts (Professionnel et Lisible) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome pour les icônes (Pas d'emojis) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lien CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="logo">
-            <h1>🏕️ Les Bords de Lyonne</h1>
-            <span>Saint-Jean-en-Royans</span>
+    <!-- Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="#">Camping St-Jean<span class="dot">.</span></a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#accommodations">Hébergements</a></li>
+                    <li><a href="#activities">Activités</a></li>
+                    <li><a href="#rates">Tarifs & Réservation</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <nav class="main-nav" id="main-nav">
-            <a href="#accueil">Accueil</a>
-            <a href="#hebergements">Hébergements</a>
-            <a href="#activites">Activités & Loisirs</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact & Accès</a>
-        </nav>
-        <button class="hamburger" id="hamburger">☰</button>
     </header>
 
-    <main>
-        
-        <section id="accueil" class="hero">
-            <div class="slider-container">
-                <div class="slide active" style="background-image: url('placeholder-image-1.jpg');">
-                    <h2>Vos Vacances au Cœur du Vercors</h2>
-                    <p>Nature, Soleil et Convivialité vous attendent en Drôme.</p>
-                    <a href="#hebergements" class="btn-primary">Découvrir nos hébergements</a>
+    <!-- Section Accueil / Slider -->
+    <section id="home" class="hero-slider">
+        <div class="slider-wrapper">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+                <div class="slide-content">
+                    <h1>Bienvenue au Camping de Saint-Jean-en-Royans</h1>
+                    <p>Un havre de paix au pied du Vercors</p>
+                    <a href="#rates" class="btn-primary">Réserver mon séjour</a>
                 </div>
             </div>
-        </section>
-
-        <section id="hebergements" class="section-padded bg-light-green">
-            <h2>Nos Hébergements & Emplacements</h2>
-            <p class="section-subtitle">Choisissez votre formule idéale pour un séjour détente et nature.</p>
-            <div class="grid-3 hebergement-grid">
-                
-                <article class="card">
-                    <h3>Emplacements Grand Confort</h3>
-                    <img src="placeholder-emplacement.jpg" alt="Emplacement tente, caravane ou camping-car">
-                    <p>Spacieux (80 à 120m²) et ombragés, avec branchement électrique 10A et accès aux sanitaires modernes.</p>
-                    <a href="#" class="btn-secondary">Détails & Tarifs</a>
-                </article>
-                
-                <article class="card">
-                    <h3>Chalets Famille Équipés</h3>
-                    <img src="placeholder-chalet.jpg" alt="Photo d'un chalet en bois chaleureux">
-                    <p>Pour 4 à 6 personnes. Cuisine, salle de bain, et grande terrasse couverte. Le confort clé en main.</p>
-                    <a href="#" class="btn-secondary">Réserver un chalet</a>
-                </article>
-                
-                <article class="card">
-                    <h3>Yourte Insolite</h3>
-                    <img src="placeholder-yourte.jpg" alt="Yourte mongole pour un séjour original">
-                    <p>Expérience originale pour 5 personnes max. Ambiance chaleureuse, immersion nature garantie.</p>
-                    <a href="#" class="btn-secondary">Voir l'intérieur</a>
-                </article>
-                
-            </div>
-        </section>
-        
-        <section id="activites" class="section-padded">
-            <h2>Activités & Loisirs</h2>
-            <p class="section-subtitle">Détente, Aventure et Partage sur place et à proximité.</p>
-            <div class="grid-2 activite-grid">
-                
-                <div class="activite-item">
-                    <img src="placeholder-piscine.jpg" alt="Piscine extérieure chauffée">
-                    <h3>Espace Aquatique</h3>
-                    <p>Profitez de notre piscine chauffée et de la pataugeoire pour les enfants. Ouvert de 10h à 19h.</p>
-                </div>
-                
-                <div class="activite-item">
-                    <img src="placeholder-randonnee.jpg" alt="Randonnée dans la nature du Vercors">
-                    <h3>Découverte du Vercors</h3>
-                    <p>Accès direct aux sentiers de randonnée. Canyonisme, vélo et sites naturels exceptionnels.</p>
-                </div>
-                
-                <div class="activite-item">
-                    <img src="placeholder-convivialite.jpg" alt="Animation et soirée à thème au camping">
-                    <h3>Animations Conviviales</h3>
-                    <p>Soirées à thème (moules-frites, karaoké), tournois sportifs, aire de jeux pour les petits.</p>
-                </div>
-                
-                <div class="activite-item">
-                    <h3>Services Pratiques</h3>
-                    <p>Bar-Snack, dépôt de pain/viennoiseries, laverie (payant), WIFI gratuit aux abords de la réception.</p>
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+                <div class="slide-content">
+                    <h1>Nature et Authenticité</h1>
+                    <p>Profitez de nos emplacements spacieux et ombragés</p>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="section-padded bg-yellow-tint">
-            <h2>Contact, Accès & Infos Pratiques</h2>
-            <div class="contact-layout">
-                
-                <div class="info-block">
-                    <h3>Informations Clés</h3>
-                    <p>📍 **Adresse :** Le Riousset, 26190 Saint-Jean-en-Royans</p>
-                    <p>📞 **Téléphone :** 04 XX XX XX XX (Juillet/Août)</p>
-                    <p>📧 **Email :** contact@camping-saintjeanenroyans.com</p>
-                    <p>🗓️ **Ouverture :** Du 1er Mai au 30 Septembre (Accueil 9h-12h et 14h-19h)</p>
-                    <p class="map-link"><a href="#" target="_blank">Accès Google Maps</a></p>
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1533240332313-0db49b459ad6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+                <div class="slide-content">
+                    <h1>Activités Famille & Sport</h1>
+                    <p>Piscine, randonnées et terre de rugby</p>
                 </div>
-                
-                <div class="form-block">
-                    <h3>Demande de Renseignements Rapide</h3>
-                    <form class="contact-form" id="contact-form">
-                        <label for="nom">Nom :</label>
-                        <input type="text" id="nom" name="nom" required aria-label="Votre nom">
+            </div>
+            
+            <!-- Contrôles Slider -->
+            <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
 
-                        <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" required aria-label="Votre adresse email">
+    <!-- Section Présentation Rapide -->
+    <section class="section-padding fade-in">
+        <div class="container text-center">
+            <h2 class="section-title">Le Camping au Cœur de la Drôme</h2>
+            <p class="section-subtitle">Situé à l'entrée du Parc Naturel Régional du Vercors, notre camping vous accueille dans un cadre verdoyant et convivial. Idéal pour les familles, les randonneurs et les amoureux de la nature.</p>
+        </div>
+    </section>
 
-                        <label for="message">Votre Message :</label>
-                        <textarea id="message" name="message" rows="4" required aria-label="Votre message ou question"></textarea>
+    <!-- Hébergements -->
+    <section id="accommodations" class="section-padding bg-light fade-in">
+        <div class="container">
+            <h2 class="section-title text-center">Nos Hébergements</h2>
+            <div class="grid-3">
+                <!-- Carte 1 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1529385101576-4e03aae38ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Emplacements Nus</h3>
+                        <p>Grands emplacements pour tentes, caravanes ou camping-cars avec accès électricité. Ombragés et délimités par des haies.</p>
+                        <a href="#rates" class="btn-secondary">Voir les tarifs</a>
+                    </div>
+                </div>
+                <!-- Carte 2 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1519810363214-38b8c541797c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Mobil-homes Confort</h3>
+                        <p>Hébergements tout équipés avec terrasse, cuisine, salle de bain et chambres séparées. Idéal pour un confort comme à la maison.</p>
+                        <a href="#rates" class="btn-secondary">Voir les tarifs</a>
+                    </div>
+                </div>
+                <!-- Carte 3 -->
+                <div class="card">
+                    <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1496080174650-637e3f22fa03?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="card-body">
+                        <h3>Tentes Lodges</h3>
+                        <p>Le compromis parfait entre la tente et le bungalow. Une expérience glamping proche de la nature avec de vrais lits.</p>
+                        <a href="#rates" class="btn-secondary">Voir les tarifs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <button type="submit" class="btn-primary">Envoyer la demande</button>
-                        <p id="form-message" style="display:none; margin-top: 15px;"></p>
+    <!-- Activités -->
+    <section id="activities" class="section-padding fade-in">
+        <div class="container">
+            <h2 class="section-title text-center">Activités & Loisirs</h2>
+            <div class="grid-3">
+                <div class="activity-item">
+                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Piscine">
+                    <div class="activity-info">
+                        <h3>Piscine Municipale</h3>
+                        <p>Accès direct à la piscine avec toboggans et bassins ludiques. Rafraîchissement garanti.</p>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Randonnée Vercors">
+                    <div class="activity-info">
+                        <h3>Randonnées Vercors</h3>
+                        <p>Départ de sentiers mythiques, Combe Laval et routes vertigineuses à proximité immédiate.</p>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <img src="https://images.unsplash.com/photo-1628809072978-75c1a84f3e32?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rugby Saint-Jean">
+                    <div class="activity-info">
+                        <h3>Terre de Rugby</h3>
+                        <p>Berceau du Sporting Club Royannais. Vivez l'ambiance du rugby local et ses valeurs de convivialité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs et Réservation -->
+    <section id="rates" class="section-padding bg-light fade-in">
+        <div class="container">
+            <h2 class="section-title text-center">Tarifs & Pré-réservation</h2>
+            
+            <div class="grid-2-col">
+                <!-- Tableau des tarifs -->
+                <div class="rates-table-container">
+                    <table class="rates-table">
+                        <thead>
+                            <tr>
+                                <th>Hébergement</th>
+                                <th>Basse Saison</th>
+                                <th>Haute Saison</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Emplacement (2 pers)</td>
+                                <td>18€ / nuit</td>
+                                <td>24€ / nuit</td>
+                            </tr>
+                            <tr>
+                                <td>Mobil-home (4 pers)</td>
+                                <td>350€ / semaine</td>
+                                <td>600€ / semaine</td>
+                            </tr>
+                            <tr>
+                                <td>Tente Lodge (4 pers)</td>
+                                <td>280€ / semaine</td>
+                                <td>450€ / semaine</td>
+                            </tr>
+                            <tr>
+                                <td>Électricité</td>
+                                <td>4€ / jour</td>
+                                <td>4€ / jour</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="note-info"><i class="fas fa-info-circle"></i> Taxe de séjour non incluse. Animaux acceptés sous conditions.</p>
+                </div>
+
+                <!-- Formulaire de réservation -->
+                <div class="booking-form-wrapper">
+                    <h3>Demande de réservation</h3>
+                    <form id="bookingForm" class="form-style">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="arrival">Arrivée</label>
+                                <input type="date" id="arrival" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="departure">Départ</label>
+                                <input type="date" id="departure" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="accommodationType">Type d'hébergement</label>
+                            <select id="accommodationType">
+                                <option value="emplacement">Emplacement nu</option>
+                                <option value="mobilhome">Mobil-home</option>
+                                <option value="lodge">Tente Lodge</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary full-width">Envoyer la demande</button>
                     </form>
                 </div>
-                
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <!-- Contact et Accès -->
+    <section id="contact" class="section-padding fade-in">
+        <div class="container">
+            <h2 class="section-title text-center">Contact & Accès</h2>
+            <div class="grid-2-col">
+                
+                <!-- Infos et Map -->
+                <div class="contact-info">
+                    <div class="info-block">
+                        <h4><i class="fas fa-map-marker-alt"></i> Adresse</h4>
+                        <p>Camping Municipal<br>Avenue du Vercors<br>26190 Saint-Jean-en-Royans</p>
+                    </div>
+                    <div class="info-block">
+                        <h4><i class="fas fa-phone"></i> Téléphone</h4>
+                        <p>04 75 48 00 00</p>
+                    </div>
+                    <div class="map-container">
+                        <!-- Intégration Google Maps statique pour St Jean -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2838.0700000000006!2d5.275!3d45.018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ab8f8f8f8f8f8%3A0x0!2sSaint-Jean-en-Royans!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
 
-    <footer class="site-footer">
-        <p>&copy; 2023 Camping Les Bords de Lyonne. Reproduction Maquette Moderne & Responsive.</p>
-        <p><a href="#">Mentions Légales</a> | <a href="#">Plan du site</a></p>
+                <!-- Formulaire Contact -->
+                <div class="contact-form-wrapper">
+                    <h3>Nous écrire</h3>
+                    <form id="contactForm" class="form-style">
+                        <div class="form-group">
+                            <label for="contactName">Nom</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-secondary">Envoyer le message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Camping Saint-Jean</h4>
+                <p>Vacances nature en Drôme.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Office de Tourisme du Vercors</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Camping Municipal Saint-Jean-en-Royans. Tous droits réservés.</p>
+        </div>
     </footer>
 
+    <!-- Script JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
