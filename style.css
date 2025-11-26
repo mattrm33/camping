@@ -1,303 +1,544 @@
-/* --- 1. Variables & Global Reset (Palette Joyeuse) --- */
+/* --- Variables CSS pour une maintenance facile --- */
 :root {
-    --color-primary: #FF7F50; /* Corail/Orange Chaleureux */
-    --color-secondary: #4CAF50; /* Vert Nature/Vif */
-    --color-accent: #FFD700; /* Jaune Soleil */
-    --color-dark: #333;
-    --color-white: #fff;
-    --color-light-green: #e8f5e9; /* Fond clair pour section */
-    --color-yellow-tint: #fffbe9; /* Fond très clair pour contact */
-    --font-family: 'Nunito', sans-serif;
-    --spacing-large: 40px;
-    --spacing-medium: 20px;
+    --primary-color: #2E7D32; /* Vert Forêt */
+    --secondary-color: #0277BD; /* Bleu Lac */
+    --accent-color: #F9A825; /* Jaune Soleil */
+    --text-color: #333333;
+    --light-bg: #F5F5F5;
+    --white: #FFFFFF;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --transition: all 0.3s ease;
 }
 
+/* --- Reset & Base --- */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-body);
+    color: var(--text-color);
     line-height: 1.6;
-    color: var(--color-dark);
-    background-color: var(--color-white);
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
 }
 
 img {
-    max-width: 100%; /* Exigence : ne jamais dépasser la taille de l'écran */
-    height: auto;
+    max-width: 100%;
     display: block;
 }
 
-h1, h2, h3 {
-    margin-bottom: var(--spacing-medium);
-    font-weight: 900;
+/* --- Typographie & Utilitaires --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
-h2 {
-    font-size: 2.5em;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--light-bg);
+}
+
+.text-center {
     text-align: center;
-    color: var(--color-primary);
-    padding-bottom: 10px;
 }
 
-.section-padded {
-    padding: var(--spacing-large) var(--spacing-medium);
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
 }
 
 .section-subtitle {
-    text-align: center;
-    margin-bottom: var(--spacing-large);
-    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto 40px;
     color: #666;
 }
 
-/* --- 2. Boutons & Cartes (Design Convivial) --- */
+/* --- Boutons --- */
 .btn-primary, .btn-secondary {
     display: inline-block;
-    padding: 10px 25px;
-    border-radius: 30px;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
     text-transform: uppercase;
-    font-weight: 700;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 10px;
-    text-decoration: none;
+    font-size: 0.9rem;
 }
 
 .btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border: 2px solid var(--color-primary);
+    background-color: var(--accent-color);
+    color: var(--white);
 }
 
 .btn-primary:hover {
-    background-color: #e66b3e; 
-    transform: translateY(-2px); /* Effet "joie & détente" */
+    background-color: #e69512;
+    transform: translateY(-2px);
 }
 
-.card {
-    background-color: var(--color-white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-align: center;
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+.btn-secondary:hover {
+    background-color: #015b91;
+    transform: translateY(-2px);
 }
 
-.card img {
-    height: 200px;
-    object-fit: cover;
+.full-width {
     width: 100%;
+    display: block;
 }
 
-/* --- 3. Header & Navigation (Desktop) --- */
-.site-header {
-    background-color: var(--color-white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* --- Header & Navigation --- */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px var(--spacing-medium);
-    z-index: 1000;
 }
 
-.logo h1 {
-    font-size: 1.8em;
-    margin: 0;
-    color: var(--color-secondary);
-}
-
-.logo span {
-    font-size: 0.9em;
-    color: var(--color-primary);
-    display: block;
-}
-
-.main-nav a {
-    color: var(--color-dark);
-    margin-left: var(--spacing-medium);
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
     font-weight: 700;
-    transition: color 0.3s;
-    text-decoration: none;
+    color: var(--primary-color);
 }
 
-.main-nav a:hover {
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+.dot {
+    color: var(--accent-color);
+}
+
+.nav-menu ul {
+    display: flex;
+}
+
+.nav-menu ul li {
+    margin-left: 30px;
+}
+
+.nav-menu ul li a {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.nav-menu ul li a:hover {
+    color: var(--secondary-color);
 }
 
 .hamburger {
-    display: none; /* Caché sur desktop */
-    background: none;
-    border: none;
-    font-size: 2em;
+    display: none;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
-/* --- 4. Mise en page (Utilisation de CSS Grid) --- */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur desktop */
-    gap: var(--spacing-medium);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur desktop */
-    gap: var(--spacing-medium);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Info et Formulaire côte à côte */
-    gap: var(--spacing-large);
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* --- 5. Slider (Hero) & Formulaire --- */
-.hero {
-    height: 70vh;
-    min-height: 450px;
+/* --- Hero Slider --- */
+.hero-slider {
     position: relative;
+    height: 100vh; /* Plein écran */
+    width: 100%;
+    overflow: hidden;
+    margin-top: 60px; /* Compensation header fixe */
 }
 
 .slide {
-    /* Style pour le slider JS */
     position: absolute;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
     background-size: cover;
     background-position: center;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide-content {
     text-align: center;
-    color: var(--color-white);
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
+    color: var(--white);
+    max-width: 800px;
+    padding: 20px;
+    z-index: 2;
 }
 
-.slide.active { opacity: 1; }
+.slide-content h1 {
+    font-size: 3rem;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+}
 
-.slide::before { /* Overlay pour meilleure lisibilité du texte */
-    content: '';
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.prev-slide, .next-slide {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.3);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    transition: background 0.3s;
 }
 
-.slide h2, .slide p, .slide a { z-index: 2; margin-bottom: 15px; }
-.slide h2 { font-size: 3.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+.prev-slide:hover, .next-slide:hover {
+    background: rgba(0,0,0,0.6);
+}
 
-/* Formulaire */
-.contact-form label, .contact-form input, .contact-form textarea {
-    display: block;
+.prev-slide { left: 20px; }
+.next-slide { right: 20px; }
+
+/* --- Grilles et Cartes (Hébergements / Activités) --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-body {
+    padding: 25px;
+    text-align: center;
+}
+
+.card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.card-body p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Activités Layout spécifique */
+.activity-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+    group: isolation;
+}
+
+.activity-item img {
     width: 100%;
-    margin-top: 5px;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.contact-form input, .contact-form textarea {
+.activity-item:hover img {
+    transform: scale(1.1);
+}
+
+.activity-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--white);
+    padding: 20px;
+}
+
+.activity-info h3 {
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.activity-info p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* --- Tarifs & Tableaux --- */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.rates-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.rates-table th, .rates-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.rates-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.note-info {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* --- Formulaires --- */
+.form-style {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input, select, textarea {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* --- Contact & Footer --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-block i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+footer {
+    background-color: #222;
+    color: #ccc;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.footer-col ul li {
     margin-bottom: 10px;
 }
 
-.contact-form button {
-    width: 100%;
+.footer-col a:hover {
+    color: var(--accent-color);
 }
 
-/* --- 6. Footer --- */
-.site-footer {
-    background-color: var(--color-dark);
-    color: var(--color-light-green);
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #333;
+    color: var(--white);
     text-align: center;
-    padding: var(--spacing-medium);
-    font-size: 0.9em;
+    line-height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background 0.3s;
 }
 
-.site-footer a {
-    color: var(--color-accent);
+.social-links a:hover {
+    background: var(--accent-color);
 }
 
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    font-size: 0.85rem;
+}
 
-/* =======================================
-   7. RESPONSIVE DESIGN (Media Queries)
-   ======================================= */
+/* --- Animations au scroll --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
-/* Tablet (jusqu'à 1023px) */
-@media (max-width: 1023px) {
-    
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive (Media Queries) --- */
+
+/* Tablette (max 992px) */
+@media (max-width: 992px) {
     .grid-3 {
-        grid-template-columns: repeat(2, 1fr); /* Grille Hébergements passe en 2 colonnes */
-    }
-
-    .contact-layout {
-        grid-template-columns: 1fr; /* Contact passe en 1 colonne (empilement) */
-        gap: var(--spacing-medium);
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    .slide h2 {
-        font-size: 2.5em;
+    .slide-content h1 {
+        font-size: 2.5rem;
     }
 }
 
-
-/* Mobile (jusqu'à 767px) */
-@media (max-width: 767px) {
-    
-    /* Menu Hamburger */
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
     .hamburger {
-        display: block; /* Afficher le bouton hamburger */
+        display: block;
     }
 
-    .main-nav {
-        display: none; /* Cacher la navigation par défaut */
-        flex-direction: column;
-        position: absolute;
-        top: 70px; /* Sous le header */
-        left: 0;
+    .nav-menu {
+        position: fixed;
+        top: 60px; /* hauteur header */
+        right: -100%;
         width: 100%;
-        background-color: var(--color-white);
-        box-shadow: 0 4px 4px rgba(0,0,0,0.1);
-        z-index: 999;
-    }
-    
-    .main-nav.active {
-        display: flex; /* Afficher la navigation via JS */
+        height: calc(100vh - 60px);
+        background-color: var(--white);
+        transition: 0.4s;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     }
 
-    .main-nav a {
-        margin: 0;
-        padding: 12px var(--spacing-medium);
-        border-bottom: 1px solid var(--color-light-green);
-        text-align: center;
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-menu ul li {
+        margin: 20px 0;
+    }
+
+    .grid-3, .grid-2-col {
+        grid-template-columns: 1fr;
+    }
+
+    .slide-content h1 {
+        font-size: 1.8rem;
     }
     
-    /* Grilles adaptatives (Empilement fluide) */
-    .grid-3, .grid-2 {
-        grid-template-columns: 1fr; /* Tout passe en 1 colonne */
-    }
-    
-    .slide h2 {
-        font-size: 1.8em;
-    }
-    
-    h2 {
-        font-size: 2em;
+    .hero-slider {
+        height: 60vh;
     }
 }
