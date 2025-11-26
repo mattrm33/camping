@@ -1,0 +1,303 @@
+/* --- 1. Variables & Global Reset (Palette Joyeuse) --- */
+:root {
+    --color-primary: #FF7F50; /* Corail/Orange Chaleureux */
+    --color-secondary: #4CAF50; /* Vert Nature/Vif */
+    --color-accent: #FFD700; /* Jaune Soleil */
+    --color-dark: #333;
+    --color-white: #fff;
+    --color-light-green: #e8f5e9; /* Fond clair pour section */
+    --color-yellow-tint: #fffbe9; /* Fond très clair pour contact */
+    --font-family: 'Nunito', sans-serif;
+    --spacing-large: 40px;
+    --spacing-medium: 20px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--color-dark);
+    background-color: var(--color-white);
+}
+
+img {
+    max-width: 100%; /* Exigence : ne jamais dépasser la taille de l'écran */
+    height: auto;
+    display: block;
+}
+
+h1, h2, h3 {
+    margin-bottom: var(--spacing-medium);
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--color-primary);
+    padding-bottom: 10px;
+}
+
+.section-padded {
+    padding: var(--spacing-large) var(--spacing-medium);
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* --- 2. Boutons & Cartes (Design Convivial) --- */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: #e66b3e; 
+    transform: translateY(-2px); /* Effet "joie & détente" */
+}
+
+.card {
+    background-color: var(--color-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* --- 3. Header & Navigation (Desktop) --- */
+.site-header {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px var(--spacing-medium);
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-size: 1.8em;
+    margin: 0;
+    color: var(--color-secondary);
+}
+
+.logo span {
+    font-size: 0.9em;
+    color: var(--color-primary);
+    display: block;
+}
+
+.main-nav a {
+    color: var(--color-dark);
+    margin-left: var(--spacing-medium);
+    font-weight: 700;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.hamburger {
+    display: none; /* Caché sur desktop */
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+/* --- 4. Mise en page (Utilisation de CSS Grid) --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur desktop */
+    gap: var(--spacing-medium);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur desktop */
+    gap: var(--spacing-medium);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Info et Formulaire côte à côte */
+    gap: var(--spacing-large);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- 5. Slider (Hero) & Formulaire --- */
+.hero {
+    height: 70vh;
+    min-height: 450px;
+    position: relative;
+}
+
+.slide {
+    /* Style pour le slider JS */
+    position: absolute;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-white);
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+.slide.active { opacity: 1; }
+
+.slide::before { /* Overlay pour meilleure lisibilité du texte */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.slide h2, .slide p, .slide a { z-index: 2; margin-bottom: 15px; }
+.slide h2 { font-size: 3.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+
+/* Formulaire */
+.contact-form label, .contact-form input, .contact-form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+/* --- 6. Footer --- */
+.site-footer {
+    background-color: var(--color-dark);
+    color: var(--color-light-green);
+    text-align: center;
+    padding: var(--spacing-medium);
+    font-size: 0.9em;
+}
+
+.site-footer a {
+    color: var(--color-accent);
+}
+
+
+/* =======================================
+   7. RESPONSIVE DESIGN (Media Queries)
+   ======================================= */
+
+/* Tablet (jusqu'à 1023px) */
+@media (max-width: 1023px) {
+    
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr); /* Grille Hébergements passe en 2 colonnes */
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr; /* Contact passe en 1 colonne (empilement) */
+        gap: var(--spacing-medium);
+    }
+    
+    .slide h2 {
+        font-size: 2.5em;
+    }
+}
+
+
+/* Mobile (jusqu'à 767px) */
+@media (max-width: 767px) {
+    
+    /* Menu Hamburger */
+    .hamburger {
+        display: block; /* Afficher le bouton hamburger */
+    }
+
+    .main-nav {
+        display: none; /* Cacher la navigation par défaut */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Sous le header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    
+    .main-nav.active {
+        display: flex; /* Afficher la navigation via JS */
+    }
+
+    .main-nav a {
+        margin: 0;
+        padding: 12px var(--spacing-medium);
+        border-bottom: 1px solid var(--color-light-green);
+        text-align: center;
+    }
+    
+    /* Grilles adaptatives (Empilement fluide) */
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr; /* Tout passe en 1 colonne */
+    }
+    
+    .slide h2 {
+        font-size: 1.8em;
+    }
+    
+    h2 {
+        font-size: 2em;
+    }
+}
