@@ -1,92 +1,164 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     
-    // ------------------------------------
-    // 1. Gestion du Menu Hamburger (Responsive)
-    // ------------------------------------
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('main-nav');
+    /* ------------------------------------------------
+       1. Menu Hamburger Responsive
+    ------------------------------------------------ */
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
 
-    hamburger.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        // Changer l'icône du hamburger en croix (✕)
-        hamburger.innerHTML = nav.classList.contains('active') ? '✕' : '☰';
+    // Ouvrir/Fermer le menu au clic sur l'icône
+    hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        // Animation simple de l'icône (optionnel)
+        hamburger.classList.toggle("open");
     });
 
-    // Fermer le menu lors du clic sur un lien (pour le confort utilisateur sur mobile)
-    nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 767) {
-                nav.classList.remove('active');
-                hamburger.innerHTML = '☰';
-            }
+    // Fermer le menu quand on clique sur un lien
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
         });
     });
 
-    // ------------------------------------
-    // 2. Gestion du Slider d'Accueil
-    // ------------------------------------
-    const slidesData = [
-        { 
-            title: "Vos Vacances au Cœur du Vercors", 
-            subtitle: "Nature, Soleil et Convivialité vous attendent.",
-            img: "https://via.placeholder.com/1920x600/4CAF50/FFFFFF?text=PAYSAGE+VERCORS" 
-        },
-        { 
-            title: "Détente au bord de la Piscine", 
-            subtitle: "Espace aquatique chauffé pour toute la famille.",
-            img: "https://via.placeholder.com/1920x600/FF7F50/FFFFFF?text=PISCINE+CHAUFFEE" 
-        },
-        { 
-            title: "Séjours Insolites : Yourte", 
-            subtitle: "Vivez une expérience unique au plus proche de la Lyonne.",
-            img: "https://via.placeholder.com/1920x600/FFD700/333333?text=YOURTE+CAMPING" 
-        }
-    ];
-    
-    const sliderContainer = document.querySelector('.slider-container');
-    
-    // Injection des slides
-    sliderContainer.innerHTML = slidesData.map((data, index) => `
-        <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${data.img}');">
-            <h2>${data.title}</h2>
-            <p>${data.subtitle}</p>
-            <a href="#hebergements" class="btn-primary">Découvrir nos hébergements</a>
-        </div>
-    `).join('');
-    
-    const slides = document.querySelectorAll('.slide');
+    /* ------------------------------------------------
+       2. Slider d'Images (Hero)
+    ------------------------------------------------ */
+    const slides = document.querySelectorAll(".slide");
+    const prevBtn = document.querySelector(".prev-slide");
+    const nextBtn = document.querySelector(".next-slide");
     let currentSlide = 0;
+    const slideIntervalTime = 5000; // 5 secondes
+    let slideInterval;
 
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+    // Fonction pour afficher une slide spécifique
+    const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+            slide.classList.remove("active");
+            if (i === index) {
+                slide.classList.add("active");
+            }
+        });
+    };
+
+    // Slide suivante
+    const nextSlide = () => {
+        currentSlide++;
+        if (currentSlide > slides.length - 1) {
+            currentSlide = 0;
+        }
+        showSlide(currentSlide);
+    };
+
+    // Slide précédente
+    const prevSlide = () => {
+        currentSlide--;
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1;
+        }
+        showSlide(currentSlide);
+    };
+
+    // Écouteurs d'événements pour les flèches
+    nextBtn.addEventListener("click", () => {
+        nextSlide();
+        resetInterval();
+    });
+
+    prevBtn.addEventListener("click", () => {
+        prevSlide();
+        resetInterval();
+    });
+
+    // Autoplay
+    const startInterval = () => {
+        slideInterval = setInterval(nextSlide, slideIntervalTime);
+    };
+
+    const resetInterval = () => {
+        clearInterval(slideInterval);
+        startInterval();
+    };
+
+    // Démarrer le slider
+    startInterval();
+
+    /* ------------------------------------------------
+       3. Animation Fade-in au Scroll
+    ------------------------------------------------ */
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+        threshold: 0.2, // Déclenche quand 20% de l'élément est visible
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target); // Arrête d'observer une fois apparu
+            }
+        });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+
+    /* ------------------------------------------------
+       4. Validation Formulaire Réservation (Simple)
+    ------------------------------------------------ */
+    const bookingForm = document.getElementById("bookingForm");
+    
+    if(bookingForm) {
+        bookingForm.addEventListener("submit", (e) => {
+            e.preventDefault(); // Empêche l'envoi réel pour la démo
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const arrival = new Date(document.getElementById("arrival").value);
+            const departure = new Date(document.getElementById("departure").value);
+            
+            // Vérification basique
+            if (name === "" || email === "") {
+                alert("Merci de remplir tous les champs obligatoires.");
+                return;
+            }
+
+            if (arrival >= departure) {
+                alert("La date de départ doit être postérieure à la date d'arrivée.");
+                return;
+            }
+
+            // Simulation d'envoi réussi
+            alert(`Merci ${name} ! Votre demande de réservation du ${arrival.toLocaleDateString()} au ${departure.toLocaleDateString()} a bien été envoyée.`);
+            bookingForm.reset();
+        });
     }
 
-    // Changement automatique toutes les 5 secondes
-    setInterval(nextSlide, 5000); 
+    /* ------------------------------------------------
+       5. Validation Formulaire Contact
+    ------------------------------------------------ */
+    const contactForm = document.getElementById("contactForm");
 
-    // ------------------------------------
-    // 3. Gestion simplifiée du Formulaire de Contact
-    // ------------------------------------
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
+    if(contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("contactEmail").value;
+            
+            // Regex simple pour email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if(!emailRegex.test(email)) {
+                alert("Veuillez entrer une adresse email valide.");
+                return;
+            }
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Simuler la validation et l'envoi
-        formMessage.style.display = 'block';
-        formMessage.style.color = 'var(--color-secondary)';
-        formMessage.style.backgroundColor = 'var(--color-light-green)';
-        formMessage.style.padding = '10px';
-        formMessage.style.borderRadius = '5px';
-        formMessage.innerHTML = '✅ Message envoyé ! Nous vous contacterons rapidement. (Simulation de l\'envoi)';
-        
-        // Effacer le message et réinitialiser le formulaire après 4 secondes
-        setTimeout(() => {
+            alert("Message envoyé avec succès ! Nous vous répondrons sous 24h.");
             contactForm.reset();
-            formMessage.style.display = 'none';
-        }, 4000);
-    });
+        });
+    }
 });
